@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Application Templates - Powered by Muhammad Tahir Raza</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2pdf.js for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .urdu-text {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            direction: rtl;
+        }
+
+        /* Watermark Styles */
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 8vw;
+            font-weight: 800;
+            color: rgba(0, 0, 0, 0.05);
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 0;
+            user-select: none;
+        }
+
+        .watermark-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='300' height='300' viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext x='50%25' y='50%25' fill='rgba(0,0,0,0.03)' font-size='24' font-family='Arial' transform='rotate(-45 150 150)' text-anchor='middle' dominant-baseline='middle'%3EMuhammad Tahir Raza%3C/text%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Card Styles */
+        .app-card {
+            transition: all 0.3s ease;
+        }
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* PDF specific adjustments */
+        .pdf-content {
+            background: white;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* WhatsApp Button Pulse */
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .whatsapp-float {
+            animation: pulse-green 2s infinite;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Watermarks -->
+    <div class="watermark">Muhammad Tahir Raza</div>
+    <div class="watermark-overlay"></div>
+
+    <!-- Navigation / Header -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold">Application Templates</h1>
+                <p class="text-xs text-blue-200">Powered by Muhammad Tahir Raza</p>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="generatePDF()" class="bg-white text-blue-900 px-4 py-2 rounded-lg font-bold hover:bg-blue-50 transition flex items-center gap-2 text-sm md:text-base">
+                    <i class="fas fa-file-pdf"></i> Download PDF
+                </button>
+                <a href="https://wa.me/923037029552" target="_blank" class="bg-green-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-600 transition flex items-center gap-2 text-sm md:text-base">
+                    <i class="fab fa-whatsapp"></i> Contact
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area (This is what gets printed) -->
+    <div id="content-to-print" class="container mx-auto px-4 py-8 relative z-10 max-w-5xl">
+        
+        <!-- Intro Header for PDF -->
+        <div class="text-center mb-10 pb-6 border-b border-gray-300">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Student Applications & Resources</h1>
+            <p class="text-xl text-blue-600 font-semibold">Powered by Muhammad Tahir Raza</p>
+            <p class="text-gray-500 mt-2">A complete collection of academic applications and stories.</p>
+        </div>
+
+        <!-- Master Template Section -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8 border-l-4 border-blue-600 app-card">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
+                <i class="fas fa-star text-yellow-500"></i> Master Template
+            </h2>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-200 font-mono text-sm md:text-base whitespace-pre-wrap">To
+The Principal,
+[Name of the College],
+[City].
+
+Date: [DD/MM/YYYY]
+
+Subject: Application for [mention the purpose here]
+
+Respected Sir / Madam,
+
+With due respect, I beg to state that I am a regular student of [Your Class / Department Name] in your esteemed college. I would like to bring to your kind notice that [write here 2–3 lines about your purpose].
+
+I shall be extremely obliged if you kindly consider my request and take necessary action in this regard. Your kind approval will help me a lot and I shall always remain grateful to you for your support and understanding.</div>
+        </div>
+
+        <!-- Applications Grid -->
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Application Collection</h2>
+        <div class="grid grid-cols-1 gap-6 mb-12">
+
+            <!-- App 1 -->
+            <div class="bg-white rounded-lg shadow p-6 app-card">
+                <div class="font-bold text-lg text-blue-800 mb-2">1. Application to be the Chief Guest on Sports Day</div>
+                <p class="text-gray-700 whitespace-pre-line text-sm"><strong>Subject:</strong> Application to be the Chief Guest on Sports Day
+                
+                Respected Sir / Madam,
+                With due respect, I beg to state that I am a student of your esteemed college. Our annual Sports Day will be held soon, and we would be greatly honoured if you could be the Chief Guest. Your presence would encourage the students and make the event memorable for everyone.
+                I shall be extremely obliged if you kindly consider my request and take necessary action in this regard.</p>
+            </div>
+
+            <!-- App 2 -->
+            <div class="bg-white rounded-lg shadow p-6 app-card">
+                <div class="font-bold text-lg text-blue-800 mb-2">2. Application for Sick Leave</div>
+                <p class="text-gray-700 whitespace-pre-line text-sm"><strong>Subject:</strong> Application for Sick Leave
+                
+                Respected Sir / Madam,
+                With due respect, I beg to state that I have been suffering from high fever and cough for the last two days. The doctor has advised me to take complete rest at home. Therefore, I am unable to attend college during this period. Kindly grant me leave.</p>
+            </div>
+
+            <!-- Apps 3-6 Row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow p-6 app-card">
+                    <div class="font-bold text-blue-800 mb-2">3. Character Certificate</div>
+                    <p class="text-gray-600 text-sm">I have completed my studies in your college and now I need a character certificate. It is required for my higher studies and future employment. Kindly issue the certificate at your earliest convenience.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 app-card">
+                    <div class="font-bold text-blue-800 mb-2">4. Remission of Absence Fine</div>
+                    <p class="text-gray-600 text-sm">I was unable to attend classes due to a family emergency. For this reason, I have been fined for absence. I request you to kindly remit my fine considering my genuine reason.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 app-card">
+                    <div class="font-bold text-blue-800 mb-2">5. Full Fee Concession</div>
+                    <p class="text-gray-600 text-sm">I belong to a poor family and it is difficult for me to pay my full college fee. My father’s income is very low, and I depend entirely on him. I request you kindly to grant me a full fee concession.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 app-card">
+                    <div class="font-bold text-blue-800 mb-2">6. Remission of Library Fine</div>
+                    <p class="text-gray-600 text-sm">I could not return a library book on time because I was unwell. I have now returned the book with a fine notice. Kindly remit the library fine as my delay was not intentional.</p>
+                </div>
+            </div>
+
+            <!-- Apps 7-20 Compact List -->
+            <div class="bg-white rounded-lg shadow p-6 mt-6 app-card">
+                <h3 class="font-bold text-xl mb-4 text-gray-800">Short Application Requests</h3>
+                <div class="space-y-4">
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">7. Refund of Security:</span> I have cleared all my dues and returned books/hostel items. Kindly arrange to refund my security deposit.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">8. Financial Help:</span> My family is facing financial problems. I am a sincere student. Kindly grant me financial help from the special fund.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">9. Re-admission:</span> I could not continue studies last session due to personal problems. Now I wish to rejoin. Kindly allow re-admission.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">10. College Leaving Certificate:</span> I have completed my studies. I need a leaving certificate for admission elsewhere. Kindly issue it.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">11. Change of Subject:</span> I wish to change from Economics to Political Science as the present subject is difficult. Kindly allow this change.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">12. Apology for Misbehaviour:</span> I am deeply sorry for my misbehaviour. It was unintentional. Kindly forgive me and allow me to continue classes.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">13. Scholarship:</span> I obtained good marks but belong to a poor family. Kindly grant me a scholarship to continue my studies.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">14. Study Tour:</span> Our class is planning a study tour for practical knowledge. Kindly grant permission and necessary funds.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">15. One-Month Leave:</span> I have to go to my native place for family work. Kindly grant me one month’s leave.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">16. Condoning Shortage of Lectures:</span> My attendance fell short due to illness. Kindly condone the shortage and allow me to sit for exams.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">17. Medicines in Dispensary:</span> The dispensary lacks medicines. Kindly arrange for necessary medicines for students.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">18. Leave for Urgent Work:</span> I have urgent personal work out of station. Kindly grant me leave for one day.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">19. Leave to Attend Sick Mother:</span> My mother is seriously ill. I need to care for her. Kindly grant me leave for a few days.
+                    </div>
+                    <div class="border-b pb-2">
+                        <span class="font-bold text-blue-700">20. Leave to Attend Funeral:</span> A close relative passed away. I must attend the funeral. Kindly grant me leave for the day.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story Section -->
+        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-md p-8 border border-blue-100">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Story Introduction / کہانی کا تعارف</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- English -->
+                <div>
+                    <h3 class="font-bold text-blue-800 mb-2 border-b border-blue-200 pb-1">English Version</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Stories have always been a mirror of life, reflecting human emotions, experiences, and lessons. Every story carries a message and takes us on a journey through imagination. The following story is an attempt to weave words into meaningful expressions that entertain, inspire, and teach valuable lessons about life.
+                    </p>
+                    <div class="mt-4 bg-white p-3 rounded text-sm text-gray-600 italic">
+                        "Every story teaches us something valuable. This story is about life. Let us read and learn from it."
+                    </div>
+                </div>
+
+                <!-- Urdu -->
+                <div class="text-right">
+                    <h3 class="font-bold text-blue-800 mb-2 border-b border-blue-200 pb-1 urdu-text">اردو ترجمہ</h3>
+                    <p class="text-gray-700 leading-relaxed urdu-text text-lg">
+                        کہانی کا تعارف:
+                        کہانیاں ہمیشہ سے زندگی کا عکس رہی ہیں، جو انسانی جذبات، تجربات اور سبق کی عکاسی کرتی ہیں۔ ہر کہانی ایک پیغام لے کر آتی ہے اور ہمیں تخیل کی دنیا میں سفر پر لے جاتی ہے۔ درج ذیل کہانی الفاظ کو معنی خیز انداز میں پرونے کی ایک کوشش ہے جو تفریح فراہم کرے، حوصلہ بڑھائے اور زندگی کے قیمتی اسباق سکھائے۔
+                    </p>
+                    <div class="mt-4 bg-white p-3 rounded text-sm text-gray-600 urdu-text">
+                        "یہ کہانی انسانی فطرت اور زندگی کے تجربات کو بیان کرتی ہے اور تفریح کے ساتھ اہم سبق بھی پیش کرتی ہے۔"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer in PDF -->
+        <div class="mt-12 pt-6 border-t border-gray-300 text-center text-gray-500 text-sm">
+            <p>Created by Muhammad Tahir Raza</p>
+            <p>Contact: +92 303 7029552</p>
+        </div>
+
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923037029552" target="_blank" class="whatsapp-float fixed bottom-6 right-6 bg-green-500 text-white rounded-full p-4 shadow-lg hover:bg-green-600 transition z-50 flex items-center justify-center w-16 h-16">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Footer for Web -->
+    <footer class="bg-gray-800 text-white mt-12 py-8 relative z-10">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-2">Muhammad Tahir Raza</h3>
+            <p class="mb-4 text-gray-400">Educational Resources & Templates</p>
+            <div class="flex justify-center gap-4 mb-6">
+                <a href="https://wa.me/923037029552" class="text-green-400 hover:text-white transition"><i class="fab fa-whatsapp text-2xl"></i></a>
+                <a href="#" class="text-blue-400 hover:text-white transition"><i class="fab fa-facebook text-2xl"></i></a>
+                <a href="#" class="text-pink-400 hover:text-white transition"><i class="fab fa-instagram text-2xl"></i></a>
+            </div>
+            <div class="bg-gray-700 rounded-lg py-2 px-4 inline-block">
+                <i class="fas fa-phone-alt mr-2"></i> +92 303 7029552
+            </div>
+            <p class="text-xs text-gray-500 mt-6">&copy; 2024 Muhammad Tahir Raza. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- PDF Generation Script -->
+    <script>
+        function generatePDF() {
+            // Get the element
+            const element = document.getElementById('content-to-print');
+            
+            // Options for html2pdf
+            const opt = {
+                margin:       [10, 10, 10, 10],
+                filename:     'Student_Applications_Tahir_Raza.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // Show loading state on button (optional simple feedback)
+            const btn = document.querySelector('button[onclick="generatePDF()"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+            
+            // New Promise-based usage:
+            html2pdf().set(opt).from(element).save().then(() => {
+                btn.innerHTML = originalText;
+            });
+        }
+    </script>
+</body>
+</html>
